@@ -73,7 +73,7 @@ if (!class_exists('Eddie_Logger')) {
             $location = $backtrace[1]['class'] . $backtrace[1]['type'] . $backtrace[1]['function'] . "@" . $backtrace[0]['line'];
 
             $backtrace = array_reverse($backtrace);
-            $toDump = "<br><b>" . date("[H:i:s]  :  ") . $requestUrl . "</b><br>$location<br><br>";
+            $toDump = "<br><b>" . date("[H:i:s]  :  ") . $requestUrl . "</b><br>$location<br><br><br>";
 
             $previousItem = null;
             foreach ($backtrace as $item) {
