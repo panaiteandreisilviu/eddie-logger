@@ -60,7 +60,6 @@ if (!class_exists('Eddie_Logger')) {
                 . "<br><b>____________________________________________</b><br>";
 
             $this->addSfDumpAssets(self::getLogFileFullPath($channel));
-
             file_put_contents(self::getLogFileFullPath($channel), $contents, FILE_APPEND);
         }
 
@@ -83,7 +82,7 @@ if (!class_exists('Eddie_Logger')) {
                     $cleanBacktrace .= $item['file'] . "@" . $item['line'] . "<br>" . $item['function'] . "<br><br>";
                 }
             }
-
+            $this->addSfDumpAssets(self::getLogFileFullPath($channel));
             file_put_contents(self::getLogFileFullPath($channel), $cleanBacktrace, FILE_APPEND);
         }
 
