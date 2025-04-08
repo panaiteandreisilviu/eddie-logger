@@ -78,7 +78,7 @@ if (!class_exists('Eddie_Logger')) {
             $previousItem = null;
             foreach ($backtrace as $item) {
                 $fileLocation = $item['file'] . "@" . $item['line'];
-                $calledItemLineNumber = ($previousItem ?? 'x');
+                $calledItemLineNumber = ($previousItem['line'] ?? 'x');
                 if ($item['class']) {
                     $calledItem = ($item['class'] . $item['type'] . $item['function'] . "@$calledItemLineNumber");
                 } else {
