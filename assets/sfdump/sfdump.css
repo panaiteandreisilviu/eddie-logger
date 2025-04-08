@@ -1,3 +1,6 @@
+body {
+    background: #cccccc !important;
+}
 pre.sf-dump {
     display: block;
     white-space: pre;
