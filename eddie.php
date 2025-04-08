@@ -73,15 +73,23 @@ if (!class_exists('Eddie_Logger')) {
             $location = $backtrace[1]['class'] . $backtrace[1]['type'] . $backtrace[1]['function'] . "@" . $backtrace[0]['line'];
 
             $backtrace = array_reverse($backtrace);
+            $toDump = "<br><b>" . date("[H:i:s]  :  ") . $requestUrl . "</b><br>$location<br><br>";
 
-            $cleanBacktrace = "<br><b>" . date("[H:i:s]  :  ") . $requestUrl . "</b><br>$location<br>";
+            $previousItem = null;
             foreach ($backtrace as $item) {
                 $fileLocation = $item['file'] . "@" . $item['line'];
-                $calledItem = $item['class'] ? ($item['class'] . $item['type'] . $item['function']) : $item['function'];
-                $cleanBacktrace .= "<b>$calledItem</b> --------- $fileLocation<br><br>";
+                $calledItemLineNumber = ($previousItem ?? 'x');
+                if ($item['class']) {
+                    $calledItem = ($item['class'] . $item['type'] . $item['function'] . "@$calledItemLineNumber");
+                } else {
+                    $calledItem = ($item['function'] . "@$calledItemLineNumber");
+                }
+                $toDump .= "<b>$calledItem</b><br>$fileLocation<br><br>";
+
+                $previousItem = $item;
             }
             $this->addSfDumpAssets(self::getLogFileFullPath($channel));
-            file_put_contents(self::getLogFileFullPath($channel), $cleanBacktrace, FILE_APPEND);
+            file_put_contents(self::getLogFileFullPath($channel), $toDump, FILE_APPEND);
         }
 
         public function clear_log(int|string $channel = null): void
