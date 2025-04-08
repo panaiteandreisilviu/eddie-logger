@@ -76,11 +76,9 @@ if (!class_exists('Eddie_Logger')) {
 
             $cleanBacktrace = "<br><b>" . date("[H:i:s]  :  ") . $requestUrl . "</b><br>$location<br>";
             foreach ($backtrace as $item) {
-                if ($item['class']) {
-                    $cleanBacktrace .= $item['file'] . "@" . $item['line'] . "<br>" . $item['class'] . $item['type'] . $item['function'] . "<br><br>";
-                } else {
-                    $cleanBacktrace .= $item['file'] . "@" . $item['line'] . "<br>" . $item['function'] . "<br><br>";
-                }
+                $fileLocation = $item['file'] . "@" . $item['line'];
+                $calledItem = $item['class'] ? ($item['class'] . $item['type'] . $item['function']) : $item['function'];
+                $cleanBacktrace .= "<b>$calledItem</b> --------- $fileLocation<br><br>";
             }
             $this->addSfDumpAssets(self::getLogFileFullPath($channel));
             file_put_contents(self::getLogFileFullPath($channel), $cleanBacktrace, FILE_APPEND);
