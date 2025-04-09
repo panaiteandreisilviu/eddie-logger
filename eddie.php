@@ -129,7 +129,7 @@ EOHTML;
 
         public function formatDebugBacktrace(array $backtrace): string
         {
-            $formattedBacktrace = "";
+            $formattedBacktrace = [];
             $traceCount = count($backtrace);
 
             foreach ($backtrace as $index => $item) {
@@ -153,11 +153,11 @@ EOHTML;
                 }
                 $projectFormatted = "<span style='width: 57px; background-color: #b5e1c2; display: inline-block; text-align: center; border: 1px solid #a6a6a6;'>$projectName</span>";
                 $traceCountFormatted = "<span style='width: 20px; display: inline-block'>#$traceCount</span>";
-                $formattedBacktrace .= "$projectFormatted $traceCountFormatted $phpStormHref <br>";
+                $formattedBacktrace[] = "$projectFormatted $traceCountFormatted $phpStormHref <br>";
                 $traceCount--;
             }
 
-            return $formattedBacktrace;
+            return implode("", $formattedBacktrace);
         }
 
         public function getProjectName(string $remoteFile): string
