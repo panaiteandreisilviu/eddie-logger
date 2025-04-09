@@ -157,7 +157,7 @@ EOHTML;
                 $traceCount--;
             }
 
-            return implode("", $formattedBacktrace);
+            return implode("", array_reverse($formattedBacktrace));
         }
 
         public function getProjectName(string $remoteFile): string
