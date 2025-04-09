@@ -75,18 +75,16 @@ if (!class_exists('Eddie_Logger')) {
             $backtrace = array_reverse($backtrace);
             $toDump = "<br><b>" . date("[H:i:s]  :  ") . $requestUrl . "</b><br>$location<br><br><br>";
 
-            $previousItem = null;
-            foreach ($backtrace as $item) {
+            foreach ($backtrace as $index => $item) {
                 $fileLocation = $item['file'] . "@" . $item['line'];
-                $calledItemLineNumber = isset($previousItem['line']) ? ("@" . $previousItem['line']) : '';
+                $nextItem = $backtrace[$index+1] ?? null;
+                $calledItemLineNumber = $nextItem ? ("@" . $nextItem['line']) : '';
                 if ($item['class']) {
                     $calledItem = ($item['class'] . $item['type'] . $item['function'] . "$calledItemLineNumber");
                 } else {
                     $calledItem = ($item['function'] . "@$calledItemLineNumber");
                 }
                 $toDump .= "$fileLocation<br><b>$calledItem</b><br><br>";
-
-                $previousItem = $item;
             }
             $this->addSfDumpAssets(self::getLogFileFullPath($channel));
             file_put_contents(self::getLogFileFullPath($channel), $toDump, FILE_APPEND);
