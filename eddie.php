@@ -1,7 +1,5 @@
 <?php
 
-namespace EddieLogger;
-
 require_once __DIR__ . '/src/Config/LoggerConfig.php';
 require_once __DIR__ . '/src/Formatter/BacktraceFormatter.php';
 require_once __DIR__ . '/src/Logger/Logger.php';
