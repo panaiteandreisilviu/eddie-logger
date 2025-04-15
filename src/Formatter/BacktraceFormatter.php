@@ -2,4 +2,11 @@
 
 namespace EddieLogger\Formatter;
 
-class BacktraceFormatter {}
+readonly class BacktraceFormatter {
+    
+    public function __construct() {}
+    
+
+
+
+}
