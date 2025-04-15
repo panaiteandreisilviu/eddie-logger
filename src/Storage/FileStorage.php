@@ -2,4 +2,8 @@
 
 namespace EddieLogger\Storage;
 
-class FileStorage {}
+use EddieLogger\Config\LoggerConfig;
+
+class FileStorage {
+    public function __construct(private LoggerConfig $config) {}
+}
