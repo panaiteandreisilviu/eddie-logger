@@ -2,8 +2,6 @@
 
 namespace EddieLogger\Facade;
 
-use function sys_get_temp_dir;
-
 require_once __DIR__ . '/EddieInterface.php';
 
 class NullEddie implements EddieInterface
@@ -18,8 +16,8 @@ class NullEddie implements EddieInterface
 
     private function logError(string $message): void
     {
-        $tempLog = '../error.log';
-        file_put_contents($tempLog, date('[Y-m-d H:i:s] ') . $message . PHP_EOL, FILE_APPEND);
+        $eddieErrorLog = dirname(__DIR__, 2) . '/eddie_error.log';
+        file_put_contents($eddieErrorLog, date('[Y-m-d H:i:s] ') . $message . PHP_EOL, FILE_APPEND);
     }
 
     public function dump(mixed $debug, string $channel, string $dumpName = '-'): void

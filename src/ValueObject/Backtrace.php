@@ -79,10 +79,7 @@ readonly class Backtrace
     {
         $localPath = null;
         if (str_contains($remoteFile, 'vendor/eos-lib/sapi-core')) {
-            $localPath = '/Users/andrei.panaite/projects/sapi-core' . explode(
-                    'vendor/eos-lib/sapi-core',
-                    $remoteFile,
-                )[1];
+            $localPath = '/Users/andrei.panaite/projects/sapi-core' . explode('vendor/eos-lib/sapi-core', $remoteFile)[1];
         } elseif (str_contains($remoteFile, 'vendor/eos/lib-eos')) {
             $localPath = '/Users/andrei.panaite/projects/lib-eos' . explode('vendor/eos/lib-eos', $remoteFile)[1];
         } elseif (str_contains($remoteFile, 'vendor/eos-lib/sapi-client')) {
