@@ -11,12 +11,13 @@ use EddieLogger\Service\Timer;
 
 require_once __DIR__ . '/src/Config/Config.php';
 require_once __DIR__ . '/src/Exception/ConfigException.php';
-require_once __DIR__ . '/src/Service/Dumper.php';
-require_once __DIR__ . '/src/Service/FileStorage.php';
 require_once __DIR__ . '/src/Facade/Eddie.php';
 require_once __DIR__ . '/src/Facade/NullEddie.php';
 require_once __DIR__ . '/src/Facade/EddieInterface.php';
 require_once __DIR__ . '/src/Service/Timer.php';
+require_once __DIR__ . '/src/Service/Dumper.php';
+require_once __DIR__ . '/src/Service/FileStorage.php';
+require_once __DIR__ . '/src/ValueObject/Backtrace.php';
 
 if (!function_exists('eddie')) {
     function eddie(): EddieInterface
