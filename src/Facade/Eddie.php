@@ -5,6 +5,8 @@ namespace EddieLogger\Facade;
 use EddieLogger\Service\Dumper;
 use EddieLogger\Service\Timer;
 
+require_once __DIR__ . '/EddieInterface.php';
+
 readonly class Eddie implements EddieInterface
 {
     public function __construct(

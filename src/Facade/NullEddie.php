@@ -4,6 +4,8 @@ namespace EddieLogger\Facade;
 
 use function sys_get_temp_dir;
 
+require_once __DIR__ . '/EddieInterface.php';
+
 class NullEddie implements EddieInterface
 {
     private string $exceptionMessage;
