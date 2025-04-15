@@ -3,7 +3,6 @@
 use EddieLogger\Config\LoggerConfig;
 use EddieLogger\Dumper\Dumper;
 use EddieLogger\Eddie;
-use EddieLogger\Formatter\BacktraceFormatter;
 use EddieLogger\Storage\FileStorage;
 use EddieLogger\Timer\Timer;
 
@@ -24,7 +23,6 @@ if (!function_exists('eddie')) {
         return new Eddie(
             new Dumper(
                 new FileStorage(new LoggerConfig(file_get_contents('config.json'))),
-                new BacktraceFormatter(),
             ),
             new Timer(),
         );

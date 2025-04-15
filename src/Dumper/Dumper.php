@@ -2,18 +2,13 @@
 
 namespace EddieLogger\Dumper;
 
-use EddieLogger\Formatter\BacktraceFormatter;
 use EddieLogger\Storage\FileStorage;
 use EddieLogger\ValueObject\Backtrace;
 
 readonly class Dumper
 {
 
-
-    public function __construct(
-        private FileStorage $fileStorage,
-        private BacktraceFormatter $backtraceFormatter
-    ) {}
+    public function __construct(private FileStorage $fileStorage) {}
 
     public function dump_v1(mixed $debug, string $channel, string $dumpName = null): void
     {
