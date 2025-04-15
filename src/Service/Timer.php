@@ -1,6 +1,6 @@
 <?php
 
-namespace EddieLogger\Timer;
+namespace EddieLogger\Service;
 
 class Timer {
 

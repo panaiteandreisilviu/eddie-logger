@@ -1,1 +1,6 @@
-{}
+{
+  "logFilesLocation": "/var/www/config/eddie/logs",
+  "sfDumpAssetsLocation": "/var/www/config/eddie/assets/sfdump"
+}
+
+

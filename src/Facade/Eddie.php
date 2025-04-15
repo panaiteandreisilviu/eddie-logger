@@ -1,11 +1,11 @@
 <?php
 
-namespace EddieLogger;
+namespace EddieLogger\Facade;
 
-use EddieLogger\Dumper\Dumper;
-use EddieLogger\Timer\Timer;
+use EddieLogger\Service\Dumper;
+use EddieLogger\Service\Timer;
 
-readonly class Eddie
+readonly class Eddie implements EddieInterface
 {
     public function __construct(
         public Dumper $dumper,

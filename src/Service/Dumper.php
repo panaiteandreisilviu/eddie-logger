@@ -1,8 +1,7 @@
 <?php
 
-namespace EddieLogger\Dumper;
+namespace EddieLogger\Service;
 
-use EddieLogger\Storage\FileStorage;
 use EddieLogger\ValueObject\Backtrace;
 
 readonly class Dumper

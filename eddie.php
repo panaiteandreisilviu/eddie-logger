@@ -1,18 +1,25 @@
 <?php
 
-use EddieLogger\Config\LoggerConfig;
-use EddieLogger\Dumper\Dumper;
-use EddieLogger\Eddie;
-use EddieLogger\Storage\FileStorage;
-use EddieLogger\Timer\Timer;
+use EddieLogger\Config\Config;
+use EddieLogger\Exception\ConfigException;
+use EddieLogger\Facade\Eddie;
+use EddieLogger\Facade\EddieInterface;
+use EddieLogger\Facade\NullEddie;
+use EddieLogger\Service\Dumper;
+use EddieLogger\Service\FileStorage;
+use EddieLogger\Service\Timer;
 
-require_once __DIR__ . '/src/Config/LoggerConfig.php';
-require_once __DIR__ . '/src/Formatter/BacktraceFormatter.php';
-require_once __DIR__ . '/src/Storage/FileStorage.php';
-require_once __DIR__ . '/src/Timer/Timer.php';
+require_once __DIR__ . '/src/Config/Config.php';
+require_once __DIR__ . '/src/Exception/ConfigException.php';
+require_once __DIR__ . '/src/Service/Dumper.php';
+require_once __DIR__ . '/src/Service/FileStorage.php';
+require_once __DIR__ . '/src/Facade/Eddie.php';
+require_once __DIR__ . '/src/Facade/NullEddie.php';
+require_once __DIR__ . '/src/Facade/EddieInterface.php';
+require_once __DIR__ . '/src/Service/Timer.php';
 
 if (!function_exists('eddie')) {
-    function eddie(): Eddie
+    function eddie(): EddieInterface
     {
         static $logger = null;
 
@@ -20,11 +27,16 @@ if (!function_exists('eddie')) {
             return $logger;
         }
 
-        return new Eddie(
-            new Dumper(
-                new FileStorage(new LoggerConfig(file_get_contents('config.json'))),
-            ),
+        try {
+            $config = new Config(file_get_contents('config.json'));
+        } catch (ConfigException $e) {
+            return new NullEddie($e->getMessage());
+        }
+
+        $logger = new Eddie(
+            new Dumper(new FileStorage($config)),
             new Timer(),
         );
+        return $logger;
     }
 }
