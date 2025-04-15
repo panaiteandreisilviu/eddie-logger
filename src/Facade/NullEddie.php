@@ -18,7 +18,7 @@ class NullEddie implements EddieInterface
 
     private function logError(string $message): void
     {
-        $tempLog = sys_get_temp_dir() . '/eddie.log';
+        $tempLog = '../eddie.log';
         file_put_contents($tempLog, date('[Y-m-d H:i:s] ') . $message . PHP_EOL, FILE_APPEND);
     }
 
