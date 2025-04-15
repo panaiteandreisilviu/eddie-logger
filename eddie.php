@@ -28,7 +28,7 @@ if (!function_exists('eddie')) {
         }
 
         try {
-            $config = new Config(file_get_contents('config.json'));
+            $config = new Config(file_get_contents(__DIR__ . DIRECTORY_SEPARATOR . 'config.json'));
         } catch (ConfigException $e) {
             return new NullEddie($e->getMessage());
         }
