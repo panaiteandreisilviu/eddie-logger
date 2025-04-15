@@ -19,7 +19,7 @@ readonly class Config
      */
     public function __construct(false|string|null $config)
     {
-        if (json_validate($config)) {
+        if (!json_validate($config)) {
             throw new ConfigException('Invalid configuration json');
         }
         $configDecoded = json_decode($config, true);
