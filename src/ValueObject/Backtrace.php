@@ -4,14 +4,8 @@ namespace EddieLogger\ValueObject;
 
 readonly class Backtrace
 {
-    private array $backtrace;
 
-    public function __construct(array $backtrace)
-    {
-        $this->backtrace = array_values(
-            array_filter($backtrace, fn($t) => str_contains($t['class'], 'EddieLogger')),
-        );
-    }
+    public function __construct(private array $backtrace) {}
 
     public function formatted(): string
     {
