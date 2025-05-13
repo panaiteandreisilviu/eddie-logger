@@ -52,12 +52,14 @@ readonly class Backtrace
             return 'sapi';
         } elseif (str_contains($remoteFile, '/front/') && !str_contains($remoteFile, '/vendor/')) {
             return 'front';
-        } elseif (str_contains($remoteFile, '/www/') && !str_contains($remoteFile, '/vendor/')) {
+        } elseif (str_contains($remoteFile, '/m.api/') && !str_contains($remoteFile, '/vendor/')) {
+            return 'mapi';
+        } elseif (str_contains($remoteFile, '/var/www/releases/www/') && !str_contains($remoteFile, '/vendor/')) {
             return 'www';
         } elseif (str_contains($remoteFile, '/vendor/')) {
             return 'vendor';
         }
-        return 'N/A';
+        return '-';
     }
 
 
@@ -86,7 +88,11 @@ readonly class Backtrace
             if (preg_match("~tags/[^/]+/data/(.*)~", $remoteFile, $matches)) {
                 $localPath = '/Users/andrei.panaite/projects/front/' . $matches[1];
             }
-        } elseif (str_contains($remoteFile, '/www/') && !str_contains($remoteFile, '/vendor/')) {
+        } elseif (str_contains($remoteFile, '/m.api/') && !str_contains($remoteFile, '/vendor/')) {
+            if (preg_match("~tags/[^/]+/data/(.*)~", $remoteFile, $matches)) {
+                $localPath = '/Users/andrei.panaite/projects/m-api/' . $matches[1];
+            }
+        } elseif (str_contains($remoteFile, '/var/www/releases/www/') && !str_contains($remoteFile, '/vendor/')) {
             if (preg_match("~tags/[^/]+/data/(.*)~", $remoteFile, $matches)) {
                 $localPath = '/Users/andrei.panaite/projects/www/' . $matches[1];
             }
