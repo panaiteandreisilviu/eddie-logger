@@ -1,0 +1,5 @@
+{
+    "main": "eddie.php",
+    "output": "box/eddie.phar",
+    "stub": "box/stub.php"
+}
